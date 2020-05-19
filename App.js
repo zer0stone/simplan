@@ -11,6 +11,7 @@ export default function App() {
         <CustomImg
         onPress = {()=> alert('설정 이미지')}>          
         </CustomImg>
+        
       </View>
       <View style = {styles.title}>
         <Text>
