@@ -10,7 +10,7 @@ export default function App() {
 
       <View style = {styles.head}>
         <CustomImg
-        onPress = {()=> alert('설정 이미지')}>          
+        onPress = {()=> alert('설정 이미지 local에서 push')}>          
         </CustomImg>        
       </View>
       <View style = {styles.title}>
