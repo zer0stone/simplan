@@ -4,14 +4,14 @@ import CustomButton from './conponents/CustomButton.js';
 import CustomImg from './conponents/CustomImg.js';
 
 export default function App() {
+  console.log('hi');  
   return (
     <View style={styles.container}>
 
       <View style = {styles.head}>
         <CustomImg
         onPress = {()=> alert('설정 이미지')}>          
-        </CustomImg>
-        
+        </CustomImg>        
       </View>
       <View style = {styles.title}>
         <Text>
