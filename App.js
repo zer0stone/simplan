@@ -1,41 +1,38 @@
-import React, {component} from 'react';
-import {  StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import CustomButton from './conponents/CustomButton.js';
-import CustomImg from './conponents/CustomImg.js';
+import React, { component } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, StatusBar } from 'react-native';
+import CustomButton from './conponents/Button/CustomButton.js';
+import SettingButton from './conponents/Button/CustomImg.js';
+import Timer from './conponents/Timer'
+import Button from "./conponents/Button";
 
 export default function App() {
-  console.log('hi');  
+  // console.log('hi');  
   return (
     <View style={styles.container}>
-
-      <View style = {styles.head}>
-        <CustomImg
-        onPress = {()=> alert('설정 이미지 local에서 push')}>          
-        </CustomImg>        
+      <StatusBar barStyle="light-content"></StatusBar>
+      <View style={styles.head}>
+        <SettingButton
+          iconName="settings"
+          onPress1={() => alert('is setting')}>
+        </SettingButton>
       </View>
-      <View style = {styles.title}>
-        <Text>
-          연주와 약속 : 21:38 PM
-        </Text>
-        <Text>
-          남은 시간 : 00:40
-        </Text>
-        <Text>
-          설정 시간 : 01:20
-        </Text>
+      <View style={styles.timer}>
+        <Timer />
       </View>
-      <View style = {styles.time}>
+      <View style={styles.animation}>
+        <Text>
+          #6 installing Redux and React Redux
+        </Text>
         <Text>
           % BAR
         </Text>
-        <Text>
-          STRATE IMG
-        </Text>
+        <Button iconName="play" onPress1={() => alert("is play!!")} />
+        <Button iconName="stop" onPress1={() => alert("is stop!!")} />
       </View>
-      <View style = {styles.nav}>
-        <CustomButton 
-          title={'hi'}
-          onPress ={() => alert('시간 추가 버튼')}
+      <View style={styles.nav}>
+        <CustomButton
+          title={'+'}
+          onPress={() => alert('is addTimer')}
         ></CustomButton>
       </View>
 
@@ -47,35 +44,35 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
-    // alignItems: 'center', 수직정렬
-    // justifyContent: 'center', 좌우정렬
+    // alignItems: 'center', 좌우정렬
+    // justifyContent: 'center', 수직정렬
   },
-  head:{
+  head: {
     flex: 1.5,
-    backgroundColor: '#F2BE22',
-    flexDirection : 'row',    
+    backgroundColor: '#ce0b24',
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent : 'flex-end',
-    
+    justifyContent: 'flex-end',
+
   },
-    
-  title:{
+
+  timer: {
     flex: 2,
-    paddingLeft : 10,
-    backgroundColor: '#F2F2F2',
+    // paddingLeft : 10,
+    // backgroundColor: '#F2F2F2',
     justifyContent: 'center',
   },
-  time:{
-    flex : 5,
-    backgroundColor : '#F2B28D',
+  animation: {
+    flex: 5,
+    backgroundColor: '#ce0b24',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  nav:{
-    flex:1.5,
-    backgroundColor : '#8C533E',
+  nav: {
+    flex: 1.5,
+    backgroundColor: '#ce0b24',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingRight : 10,
-  },    
+    paddingRight: 10,
+  },
 });
