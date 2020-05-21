@@ -2,11 +2,11 @@
 //1. import : 불러오고
 
 
-//2. Action : 액션을 정의하고
+// 2. Action : 액션을 정의하고
 
-const START_TIMER : 'START_TIMER';
-const RESTART_TIMER :'RESTART_TIMER';
-const ADD_SECOND : 'ADD_SECOND';
+const START_TIMER = 'START_TIMER';
+const RESTART_TIMER ='RESTART_TIMER';
+const ADD_SECOND = 'ADD_SECOND';
 
 //3. Action creator : 엑션 생성자를 정의
 
@@ -66,10 +66,10 @@ function applyrestartTimer(state){
 }
 
 function applyAddSecond(state){
-    if (state.elapsedTime > TIME_DURATION) { //
-        retrun{
+    if (state.elapsedTime > TIME_DURATION) {
+        return{
             ...state,
-            elapsedTime  state.elapsedTime + 1
+            elapsedTime : state.elapsedTime + 1
         }
     } else {
         return{
@@ -89,4 +89,4 @@ const actionCreator = {
 
 //7. export Reducer
 
-export reducer;
+export default reducer;

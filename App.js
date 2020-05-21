@@ -8,7 +8,7 @@ import reducer from "./reducer"; //reducer.js에서 export한 function reducer�
 import { createStore } from "redux";
 import {Provider} from "react-redux"; //state를 복사해오기 위해 Provider을 사용
 
-  let store = createStore(reducer.getState);
+  let store = createStore(reducer);
 
 export default function App() {
   // console.log('hi');  
