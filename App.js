@@ -4,6 +4,11 @@ import CustomButton from './conponents/Button/CustomButton.js';
 import SettingButton from './conponents/Button/CustomImg.js';
 import Timer from './conponents/Timer'
 import Button from "./conponents/Button";
+import reducer from "./reducer"; //reducer.js에서 export한 function reducer을 불러옴
+import { createStore } from "redux";
+import {Provider} from "react-redux"; //state를 복사해오기 위해 Provider을 사용
+
+  let store = createStore(reducer.getState);
 
 export default function App() {
   // console.log('hi');  
