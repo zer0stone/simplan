@@ -1,42 +1,15 @@
-import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+//connect 불러오기 : component를 App.js의 tore에 연결하는 것을 도와준다.
+import {connect} from 'react-redux';
+import Timer from './presenter';
 
-
-class Timer extends Component {
-    render(){
-        return (
-            <View style={styles.container}>
-                <View style={styles.upper}>
-                    <Text style={styles.timeText}>Goal : 25:00</Text>
-                </View>
-                <View style={styles.lower}>
-                    <Text style={styles.timeText}>Set : 25:00</Text>
-                </View>
-            </View>
-            );
-        }
+//store에서 state를 복사하는 function을 만듬
+function mapStateToProps(state){        
+    const {isPlaying, elapsedTime, timerDuration} = state;
+    return{
+        isPlaying,
+        elapsedTime,
+        timerDuration
+    }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex : 1,
-        backgroundColor : '#ce0b24',
-    },
-    upper: {
-        flex : 1,
-        justifyContent : 'center',
-        alignItems : 'center',
-    },
-    lower: {
-        flex : 1,
-        justifyContent : 'center',
-        alignItems : 'center',
-    },
-    timeText: {
-        fontSize : 50,
-        fontWeight : "100",
-        color : "white",
-    }
-});
-
-export default Timer
+export default connect(mapStateToProps)(Timer);

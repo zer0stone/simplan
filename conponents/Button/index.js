@@ -4,6 +4,7 @@ import { TouchableOpacity, StyleSheet } from "react-native";
 import { FontAwesome } from '@expo/vector-icons'; 
 
     function Button({iconName, onPress1}){
+        
         return( 
             // onPressOut : 클릭이 떼어질 때 실행(아이폰 버튼 대비)
             <TouchableOpacity onPressOut = {onPress1}>

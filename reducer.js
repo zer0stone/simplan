@@ -34,7 +34,7 @@ const TIME_DURATION = 1500;
 const initalState = { //초기값
     isPlaying : false,
     elapsedTime : 0,
-    timerDuation : TIME_DURATION
+    timerDuration : TIME_DURATION
 }
 
 function reducer(state = initalState, action){
@@ -45,6 +45,9 @@ function reducer(state = initalState, action){
             return applyrestartTimer(state);
         case ADD_SECOND :
             return applyAddSecond(state);
+        default :
+            return state; // case에 속하지 않은 값을 하고 있을 때, 불러와지는 값(위 초기값)
+
     }
 }
 
