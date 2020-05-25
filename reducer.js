@@ -8,7 +8,7 @@ const START_TIMER = 'START_TIMER';
 const RESTART_TIMER ='RESTART_TIMER';
 const ADD_SECOND = 'ADD_SECOND';
 
-//3. Action creator : 엑션 생성자를 정의
+//3. Action creator : 엑션 생성자를 정의 + dispatch가 바라봄
 
 function startTimer(){
     return{
@@ -72,12 +72,13 @@ function applyAddSecond(state){
     if (state.elapsedTime > TIME_DURATION) {
         return{
             ...state,
-            elapsedTime : state.elapsedTime + 1
+            isPlaying : false
+            
         }
     } else {
         return{
             ...state,
-            isPlaying : false
+            elapsedTime : state.elapsedTime + 1
         }
     }
 }
@@ -91,5 +92,6 @@ const actionCreator = {
 
 
 //7. export Reducer
+export {actionCreator};
 
 export default reducer;

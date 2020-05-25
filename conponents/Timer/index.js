@@ -1,6 +1,8 @@
 //connect 불러오기 : component를 App.js의 tore에 연결하는 것을 도와준다.
 import {connect} from 'react-redux';
 import Timer from './presenter';
+import {bindActionCreators} from "redux";
+import {actionCreator as simplanAction } from '../../reducer.js';
 
 //store에서 state를 복사하는 function을 만듬
 function mapStateToProps(state){        
@@ -12,4 +14,14 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps)(Timer);
+//dispatch = Action을 reducer로 보내주는 function이다.
+//bindActionCreators는 dispatch와 action을 묶어준다.
+function mapDispatchToProps(dispatch){
+    return{
+        startTimer : bindActionCreators(simplanAction.startTimer, dispatch),
+        restartTimer : bindActionCreators(simplanAction.restartTimer, dispatch),
+        addSecond : bindActionCreators(simplanAction.addSecond, dispatch)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Timer);
