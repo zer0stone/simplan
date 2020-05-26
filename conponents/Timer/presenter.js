@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Button from "../Button";
+import InputTime from "../Input";
 
 function formatTime (time){
     let minutes = Math.floor(time / 60);
@@ -49,6 +50,7 @@ class Timer extends Component {
                         <Button iconName="stop" onPress1={restartTimer} />
                     )}
                     <Button iconName="star" onPress1={setTimePicker} />
+                    <InputTime/>
                 </View>
             </View>
         );
