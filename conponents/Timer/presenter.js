@@ -30,8 +30,8 @@ class Timer extends Component {
     }
 
     render() {
-        // console.log(this.props); //Timer/index.js 에서 connect를 통해 전달됨
-        const { isPlaying, elapsedTime, timerDuration, startTimer, addSecond, restartTimer } = this.props;
+        console.log(this.props); //Timer/index.js 에서 connect를 통해 전달됨
+        const { isPlaying, elapsedTime, timerDuration, startTimer, addSecond, restartTimer, setTimePicker } = this.props;
         return (
             <View style={styles.container}>
                 <View style={styles.upper}>
@@ -48,6 +48,7 @@ class Timer extends Component {
                     {isPlaying && (
                         <Button iconName="stop" onPress1={restartTimer} />
                     )}
+                    <Button iconName="star" onPress1={setTimePicker} />
                 </View>
             </View>
         );

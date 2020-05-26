@@ -7,6 +7,7 @@
 const START_TIMER = 'START_TIMER';
 const RESTART_TIMER ='RESTART_TIMER';
 const ADD_SECOND = 'ADD_SECOND';
+const SET_TIME_PICKER = 'SET_TIME_PICKER';
 
 //3. Action creator : 엑션 생성자를 정의 + dispatch가 바라봄
 
@@ -28,6 +29,12 @@ function addSecond(){
     };
 }
 
+function setTimePicker(){
+    return{
+        type: SET_TIME_PICKER
+    };
+}
+
 //4. Reducer
 
 const TIME_DURATION = 1500;
@@ -45,6 +52,8 @@ function reducer(state = initalState, action){
             return applyrestartTimer(state);
         case ADD_SECOND :
             return applyAddSecond(state);
+        case SET_TIME_PICKER :
+            return applySetTime(state);
         default :
             return state; // case에 속하지 않은 값을 하고 있을 때, 불러와지는 값(위 초기값)
 
@@ -82,12 +91,20 @@ function applyAddSecond(state){
         }
     }
 }
+
+function applySetTime(state){
+    return{
+        ...state, 
+        timerDuration : 0
+    }
+}
 //6. export Action creators
 
 const actionCreator = {
     startTimer,
     restartTimer,
-    addSecond
+    addSecond,
+    setTimePicker
 }
 
 

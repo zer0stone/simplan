@@ -20,7 +20,8 @@ function mapDispatchToProps(dispatch){
     return{
         startTimer : bindActionCreators(simplanAction.startTimer, dispatch),
         restartTimer : bindActionCreators(simplanAction.restartTimer, dispatch),
-        addSecond : bindActionCreators(simplanAction.addSecond, dispatch)
+        addSecond : bindActionCreators(simplanAction.addSecond, dispatch),
+        setTimePicker : bindActionCreators(simplanAction.setTimePicker, dispatch)
     };
 }
 
