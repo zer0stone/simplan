@@ -34,6 +34,24 @@ export default function App() {
           ></CustomButton>
         </View>
 
+<<<<<<< HEAD
+=======
+      <View style = {styles.head}>
+        <CustomImg
+        onPress = {()=> alert('설정 이미지인데 사무실에서 수정')}>          
+        </CustomImg>        
+      </View>
+      <View style = {styles.title}>
+        <Text>
+          연주와 약속 : 21:38 PM
+        </Text>
+        <Text>
+          남은 시간 : 00:40
+        </Text>
+        <Text>
+          설정 시간 : 01:20
+        </Text>
+>>>>>>> 63edb77e68ae95069fe485ecc7562b4c9f901334
       </View>
     </Provider>
   );
