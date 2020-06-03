@@ -29,9 +29,12 @@ function addSecond(){
     };
 }
 
-function setTimePicker(){
+function setTimePicker(hour, minute, ref){
     return{
-        type: SET_TIME_PICKER
+        type: SET_TIME_PICKER,  
+        hh: hour * 60 * 60,
+        mm: minute * 60,
+        ref : ref
     };
 }
 
@@ -53,10 +56,9 @@ function reducer(state = initalState, action){
         case ADD_SECOND :
             return applyAddSecond(state);
         case SET_TIME_PICKER :
-            return applySetTime(state);
+            return applySetTime(state, action.hh, action.mm);
         default :
             return state; // case에 속하지 않은 값을 하고 있을 때, 불러와지는 값(위 초기값)
-
     }
 }
 
@@ -92,12 +94,13 @@ function applyAddSecond(state){
     }
 }
 
-function applySetTime(state){
+function applySetTime(state, hh, mm){
     return{
         ...state, 
-        timerDuration : 0
+        timerDuration : hh + mm,
     }
 }
+
 //6. export Action creators
 
 const actionCreator = {

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet,TouchableOpacity } from "react-native";
 import Button from "../Button";
-import InputTime from "../Input";
+import TimePicker from "react-native-24h-timepicker";
 
-function formatTime (time){
+function formatTime(time) {
     let minutes = Math.floor(time / 60);
     time -= minutes * 60;
     let seconds = parseInt(time % 60, 10);
@@ -12,26 +12,39 @@ function formatTime (time){
 
 class Timer extends Component {
 
-    componentWillReceiveProps(nextProps){
+    componentWillReceiveProps(nextProps) {
         const currentProps = this.props;
         // console.log(`현재 값 : ${currentProps.isPlaying} 다음 값 : ${nextProps.isPlaying}`);
         if (!currentProps.isPlaying && nextProps.isPlaying) {
             // console.log('시작해야 함');
             const timerInterval = setInterval(() => {
                 currentProps.addSecond();
-            }, 1000); 
+            }, 1000);
             //아래 timerInterval을 쓰기 위해 state 저장           
             this.setState({
                 timerInterval
             });
-        } else if(currentProps.isPlaying && !nextProps.isPlaying){
+        } else if (currentProps.isPlaying && !nextProps.isPlaying) {
             // console.log('중지해야 함');
             clearInterval(this.state.timerInterval);
         }
     }
 
+    timePickerSet(hour,minute){
+        const forClose = this.props;
+        forClose.setTimePicker(hour, minute);
+        this.TimePicker.close();
+        
+    }
+
+    timepicerClose(){
+        const forClose = this.props;
+        this.TimePicker.close();
+    }
+    
+
     render() {
-        console.log(this.props); //Timer/index.js 에서 connect를 통해 전달됨
+        // console.log(this.props); //Timer/index.js 에서 connect를 통해 전달됨
         const { isPlaying, elapsedTime, timerDuration, startTimer, addSecond, restartTimer, setTimePicker } = this.props;
         return (
             <View style={styles.container}>
@@ -49,8 +62,22 @@ class Timer extends Component {
                     {isPlaying && (
                         <Button iconName="stop" onPress1={restartTimer} />
                     )}
-                    <Button iconName="star" onPress1={setTimePicker} />
-                    <InputTime/>
+                    <Button iconName="star" onPress1={() => this.TimePicker.open()} />
+                    <View style={styles.container}>                        
+                        <Text style={styles.text}>{timerDuration} 초</Text>
+                        <TimePicker
+                            ref={ref => {
+                                this.TimePicker = ref;
+                            }}
+                            onCancel={() => this.timepicerClose()}
+                            onConfirm={(hour, minute) => this.timePickerSet(hour, minute)}
+                            minuteInterval={1}
+                            minuteUnit={" 분"}
+                            hourUnit={" 시간"}
+                            selectedHour={"0"}
+                            selectedMinute={"00"}
+                        />
+                    </View>
                 </View>
             </View>
         );

@@ -1,6 +1,7 @@
 //connect 불러오기 : component를 App.js의 tore에 연결하는 것을 도와준다.
 import {connect} from 'react-redux';
 import Timer from './presenter';
+import InputTime from '../Input';
 import {bindActionCreators} from "redux";
 import {actionCreator as simplanAction } from '../../reducer.js';
 
