@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet,TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Button from "../Button";
 import TimePicker from "react-native-24h-timepicker";
+// import DateTimePicker from '@react-native-community/datetimepicker';
+import DatePicker from "../Input";
 
 function formatTime(time) {
     let minutes = Math.floor(time / 60);
@@ -30,18 +32,18 @@ class Timer extends Component {
         }
     }
 
-    timePickerSet(hour,minute){
+    timePickerSet(hour, minute) {
         const forClose = this.props;
         forClose.setTimePicker(hour, minute);
         this.TimePicker.close();
-        
+
     }
 
-    timepicerClose(){
+    timepicerClose() {
         const forClose = this.props;
         this.TimePicker.close();
     }
-    
+
 
     render() {
         // console.log(this.props); //Timer/index.js 에서 connect를 통해 전달됨
@@ -49,7 +51,8 @@ class Timer extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.upper}>
-                    <Text style={styles.timeText}>Goal : 25:00</Text>
+                    {/* <Text style={styles.timeText}>Goal : 25:00</Text> */}
+                    <DatePicker/>
                 </View>
                 <View style={styles.lower}>
                     <Text style={styles.timeText}>Set : {formatTime(timerDuration - elapsedTime)}</Text>
@@ -63,7 +66,7 @@ class Timer extends Component {
                         <Button iconName="stop" onPress1={restartTimer} />
                     )}
                     <Button iconName="star" onPress1={() => this.TimePicker.open()} />
-                    <View style={styles.container}>                        
+                    <View style={styles.container}>
                         <Text style={styles.text}>{timerDuration} 초</Text>
                         <TimePicker
                             ref={ref => {

@@ -1,69 +1,64 @@
-// import React, { Component } from "react";
-// import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
-// import TimePicker from "react-native-24h-timepicker";
+import React, { useState } from 'react';
+import { View, Button, Platform, Text } from 'react-native';
+import DateTimePicker from '@react-native-community/datetimepicker';
+// 컴포넌트 : https://github.com/react-native-community/datetimepicker#style-optional-ios-only
 
-// class InputTime extends Component {
+const DatePicker = () => {
+
+    const [date, setDate] = useState(new Date());
+    const [mode, setMode] = useState('time');
+    const [show, setShow] = useState(false);
+    const [input, setInput] = useState('');
+    const [_time, set_time] = useState('00');
     
-//     constructor() {
-//         super();
-//         this.state = {
-//             time: ""
-//         };
-//     }
+    const onChange = (event, selectedDate) => {
+        const currentDate = selectedDate;
+        setShow(Platform.OS === 'ios');
+        setDate(currentDate);
+        setInput(currentDate);
+    };
 
-//     onCancel() {
-//         this.TimePicker.close();
-//     }
+    const showMode = currentMode => {
+        setShow(true);
+        setMode(currentMode);
+    };
 
-//     onConfirm(hour, minute) {
-//         var convertTime = (`${hour}:${minute}`);
-//         var parts = convertTime.split(':'),
-//             _hour = +parts[0],
-//             _minute = +parts[1];
-//         // var test = Math.round((((minutes * 60 ) / 0.016667)+ (seconds / 0.016667)));
-//         var setTime = Math.round((((_hour * 60 ) + _minute) / 0.016667));
-//         this.setState({ time: `${setTime}` });
-//         this.TimePicker.close();
-//     }
-    
 
-//     render() {
-//         const { settingTime } = this.props;
-//         return (
-//             <View style={styles.container}>
-//                 <TouchableOpacity
-//                     onPress={() => this.TimePicker.open()}
-//                     style={styles.button}
-//                 >
-//                     <Text style={styles.buttonText}>TIMEPICKER</Text>
-//                 </TouchableOpacity>
-//                 <Text style={styles.text}>{this.state.time}</Text>
-//                 <TimePicker
-//                     ref={ref => {
-//                         this.TimePicker = ref;
-//                     }}
-//                     onCancel={() => this.onCancel()}
-//                     onConfirm={(hour, minute) => this.onConfirm(hour, minute)}
-//                     minuteInterval = {5}
-//                     minuteUnit ={" 분"}
-//                     hourUnit = {" 시간"}
-//                     selectedHour = {"0"}
-//                     selectedMinute = {"00"}
-//                 />
-//             </View>
-//         );
-//     }
-// }
+    const showTimepicker = () => {
+        showMode('time');  
+    };
 
-// const styles = StyleSheet.create({
-//     container: {
-//     },
-//     text: {
-//     },
-//     button: {
-//     },
-//     buttonText: {
-//     }
-// });
+    // 시간 옵션 포멧 : https://reactgo.com/format-date-time-javascript/ 
+    const timeFormatOptions = { hour:  "2-digit", minute: "2-digit" };
+    const ok = () => {
+        if (show === false) {
+            setShow(true);
+        } else {
+            setShow(false);
+            set_time(date.toLocaleTimeString(undefined, timeFormatOptions));
+        }   
+    };
 
-// export default InputTime;
+    return (
+        <View>
+            <View>
+                <Button onPress={showTimepicker} title="Show time picker!" />
+                <Button onPress={ok} title="ok" />
+            </View>
+            <Text>Goal : {_time}</Text>
+            {show && (
+                <DateTimePicker
+                    testID="dateTimePicker"
+                    mode="time"
+                    value = { date } 
+                    is24Hour={true}
+                    display="default"
+                    onChange={onChange}
+                    textColor="white"
+                />
+            )}
+        </View>
+    );
+};
+
+export default DatePicker;
